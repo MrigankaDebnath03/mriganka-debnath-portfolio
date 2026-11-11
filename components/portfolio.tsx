@@ -203,7 +203,7 @@ export function Portfolio() {
                 <span className="mono inline-flex items-center gap-1.5 border-2 border-black bg-green-300 px-2.5 py-1 text-[10px] font-bold"><span className="h-2 w-2 rounded-full bg-green-700" />{profile.status}</span>
                 <span className="mono inline-flex items-center gap-1 border border-black/20 bg-white px-2 py-1 text-[9px] font-semibold"><Check size={12} />VIT CHENNAI / 2026</span>
               </div>
-              <p className="mono text-[10px] font-bold uppercase text-neutral-500">Software Engineer <span className="px-1 text-rose-500">//</span> {profile.location}</p>
+              <p className="mono text-[10px] font-bold uppercase text-neutral-500">Software Engineer <span className="px-1 text-rose-500">{"//"}</span> {profile.location}</p>
               <h1 className="mt-4 max-w-[15ch] text-4xl font-bold leading-[.99] sm:text-5xl lg:text-7xl">Building high-performance backend systems, serverless cloud engines &amp; <span className="underline decoration-[6px] decoration-yellow-300 underline-offset-4">developer tools.</span></h1>
               <p className="mt-6 max-w-[58ch] text-base leading-7 text-neutral-700 sm:text-lg">Backend systems, serverless cloud architecture, geospatial platforms, and developer tooling. I turn complex technical problems into practical software.</p>
               <div className="mt-7 flex flex-wrap gap-3">

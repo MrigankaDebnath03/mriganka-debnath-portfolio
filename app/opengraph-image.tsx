@@ -24,7 +24,7 @@ export default function OpenGraphImage() {
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "20px", maxWidth: "940px" }}>
         <div style={{ alignSelf: "flex-start", background: "#22c55e", border: "3px solid #171717", display: "flex", fontFamily: "monospace", fontSize: "18px", fontWeight: 700, padding: "10px 16px" }}>SOFTWARE ENGINEER · INDIA</div>
-        <div style={{ fontSize: "76px", fontWeight: 700, letterSpacing: "0", lineHeight: 1.03 }}>Backend systems.<br />Cloud architecture.<br />Developer tooling.</div>
+        <div style={{ display: "flex", flexDirection: "column", fontSize: "76px", fontWeight: 700, letterSpacing: "0", lineHeight: 1.03 }}>Backend systems.<br />Cloud architecture.<br />Developer tooling.</div>
       </div>
       <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between" }}>
         <div style={{ background: "#fffefa", border: "3px solid #171717", boxShadow: "8px 8px 0 #171717", display: "flex", fontFamily: "monospace", fontSize: "18px", fontWeight: 700, padding: "14px 20px" }}>LABCORP / IIT MADRAS / SAMSUNG R&amp;D</div>
