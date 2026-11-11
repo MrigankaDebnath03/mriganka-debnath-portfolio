@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import {
   ArrowDown, ArrowRight, ArrowUpRight, Check, Github, Linkedin,
-  Mail, MapPin, Radio, Volume2, VolumeX, X,
+  Mail, MapPin, Radio, X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent } from "react";
@@ -18,7 +18,7 @@ const navItems = [
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#education", label: "Education" },
-  { href: "/Mriganka-Debnath-Resume.pdf", label: "Resume.pdf" },
+  { href: "/Mriganka-Debnath-Resume.pdf", label: "Resume" },
   { href: "#contact", label: "Contact" },
 ];
 const projectFilters: Array<"All" | ProjectCategory> = ["All", "Systems & Backend", "AI & DevTools", "Geospatial & Web"];
@@ -34,17 +34,6 @@ function WindowBar({ path, right }: { path: string; right?: React.ReactNode }) {
       {right}
     </div>
   );
-}
-
-function Clock() {
-  const [time, setTime] = useState("--:--:--");
-  useEffect(() => {
-    const update = () => setTime(new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(new Date()));
-    update();
-    const timer = window.setInterval(update, 1000);
-    return () => window.clearInterval(timer);
-  }, []);
-  return <span className="mono tabular-nums">IST {time}</span>;
 }
 
 function TerminalWidget() {
@@ -125,7 +114,6 @@ export function Portfolio() {
   const [activeFilter, setActiveFilter] = useState<(typeof projectFilters)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<{ src: string; organization: string } | null>(null);
-  const [soundOn, setSoundOn] = useState(false);
   const [toast, setToast] = useState("");
   const dialogRef = useRef<HTMLElement>(null);
   const dialogTriggerRef = useRef<HTMLElement | null>(null);
@@ -153,23 +141,6 @@ export function Portfolio() {
     return () => window.clearTimeout(timer);
   }, [toast]);
 
-  function clickSound() {
-    if (!soundOn || typeof window === "undefined") return;
-    const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const context = new AudioContextClass();
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(660, context.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(420, context.currentTime + 0.045);
-    gain.gain.setValueAtTime(0.035, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.05);
-    oscillator.connect(gain); gain.connect(context.destination);
-    oscillator.start(); oscillator.stop(context.currentTime + 0.05);
-    oscillator.onended = () => { void context.close(); };
-  }
-
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(profile.email);
@@ -185,12 +156,9 @@ export function Portfolio() {
       <header className="fixed inset-x-0 top-0 z-30 border-b-2 border-black bg-paper/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1440px] items-center gap-3 px-4 py-2.5 sm:px-7 lg:px-10">
           <a href="#home" className="mono flex shrink-0 items-center gap-2 text-xs font-bold" aria-label="Mriganka Debnath, home"><Image src="/profile-cutout.png" alt="" width={112} height={112} className="h-7 w-7 border-2 border-black object-cover" /><span className="hidden sm:inline">mriganka.dev</span></a>
-          <nav aria-label="Main navigation" className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto sm:justify-center">
-            {navItems.map((item) => <a key={item.href} href={item.href} onClick={clickSound} className="mono shrink-0 px-2 py-1.5 text-[10px] font-semibold hover:bg-yellow-200 sm:px-3 sm:text-xs">{item.label}</a>)}
+          <nav aria-label="Main navigation" className="flex min-w-0 flex-1 items-center justify-start gap-1 overflow-x-auto sm:justify-end">
+            {navItems.map((item) => <a key={item.href} href={item.href} className="mono shrink-0 px-2 py-1.5 text-[10px] font-semibold hover:bg-yellow-200 sm:px-3 sm:text-xs">{item.label}</a>)}
           </nav>
-          <div className="hidden shrink-0 items-center gap-3 border-l border-black/20 pl-3 xl:flex mono text-[9px] font-semibold"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-green-500" />CPU: OK</span><span>RAM: 16GB</span><span>FEDORA LINUX</span></div>
-          <div className="hidden shrink-0 border-l border-black/20 pl-3 lg:block mono text-[10px]"><Clock /></div>
-          <button className="grid h-8 w-8 shrink-0 place-items-center border-2 border-black bg-white hover:bg-yellow-200" type="button" onClick={() => setSoundOn((value) => !value)} aria-label={soundOn ? "Turn sound off" : "Turn sound on"} aria-pressed={soundOn} title={soundOn ? "Sound on" : "Sound off"}>{soundOn ? <Volume2 size={15} /> : <VolumeX size={15} />}</button>
         </div>
       </header>
 
@@ -207,10 +175,10 @@ export function Portfolio() {
               <h1 className="mt-4 max-w-[15ch] text-4xl font-bold leading-[.99] sm:text-5xl lg:text-7xl">Building high-performance backend systems, serverless cloud engines &amp; <span className="underline decoration-[6px] decoration-yellow-300 underline-offset-4">developer tools.</span></h1>
               <p className="mt-6 max-w-[58ch] text-base leading-7 text-neutral-700 sm:text-lg">Backend systems, serverless cloud architecture, geospatial platforms, and developer tooling. I turn complex technical problems into practical software.</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a className="neo-btn bg-yellow-300" href={profile.links.github} target="_blank" rel="noreferrer" onClick={clickSound}><Github size={15} />GitHub <ArrowUpRight size={13} /></a>
-                <a className="neo-btn" href={profile.links.linkedin} target="_blank" rel="noreferrer" onClick={clickSound}><Linkedin size={15} />LinkedIn <ArrowUpRight size={13} /></a>
-                <a className="neo-btn" href={`mailto:${profile.email}`} onClick={clickSound}><Mail size={15} />Email me</a>
-                <a className="neo-btn" href="/Mriganka-Debnath-Resume.pdf" download onClick={clickSound}><ArrowDown size={15} />Download CV</a>
+                <a className="neo-btn bg-yellow-300" href={profile.links.github} target="_blank" rel="noreferrer"><Github size={15} />GitHub <ArrowUpRight size={13} /></a>
+                <a className="neo-btn" href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={15} />LinkedIn <ArrowUpRight size={13} /></a>
+                <a className="neo-btn" href={`mailto:${profile.email}`}><Mail size={15} />Email me</a>
+                <a className="neo-btn" href="/Mriganka-Debnath-Resume.pdf" download><ArrowDown size={15} />Download CV</a>
                 <a className="neo-btn" href={`tel:${profile.phone.replaceAll(" ", "")}`}><Radio size={15} />Call</a>
               </div>
             </div>
