@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #fdfbf7;
+  --ink: #171717;
+  --muted: #6b6b67;
+  --line: #d7d4cb;
+  --green: #22c55e;
+  --indigo: #4f46e5;
+  --yellow: #facc15;
+  --coral: #fb7185;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body {
+  background-color: var(--paper);
+  background-image: radial-gradient(#17171712 0.65px, transparent 0.65px);
+  background-size: 8px 8px;
+  color: var(--ink);
+  font-family: var(--font-display), sans-serif;
+  margin: 0;
+}
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--yellow); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--indigo); outline-offset: 3px; }
+
+.neo-box { background: #fffefa; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.neo-btn {
+  align-items: center;
+  background: #fffefa;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  display: inline-flex;
+  font-family: var(--font-mono), monospace;
+  font-size: .75rem;
+  font-weight: 700;
+  gap: .55rem;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: .65rem .85rem;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+.neo-btn:hover { box-shadow: 1px 1px 0 var(--ink); transform: translate(2px, 2px); }
+.neo-btn:active { box-shadow: none; transform: translate(3px, 3px); }
+.window-bar { align-items: center; background: #eeece5; border-bottom: 2px solid var(--ink); display: flex; gap: .45rem; min-height: 2.45rem; padding: .45rem .7rem; }
+.window-dot { border: 1.5px solid var(--ink); border-radius: 999px; height: .58rem; width: .58rem; }
+.mono { font-family: var(--font-mono), monospace; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
