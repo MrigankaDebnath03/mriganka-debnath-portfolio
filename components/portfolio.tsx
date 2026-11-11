@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import {
-  ArrowDown, ArrowRight, ArrowUpRight, Check, Github, Linkedin,
+  ArrowDown, ArrowRight, ArrowUpRight, Check, Github, Linkedin, Menu,
   Mail, MapPin, Radio, X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -115,6 +115,7 @@ export function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<{ src: string; organization: string } | null>(null);
   const [toast, setToast] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dialogRef = useRef<HTMLElement>(null);
   const dialogTriggerRef = useRef<HTMLElement | null>(null);
   const filteredProjects = useMemo(() => activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter), [activeFilter]);
@@ -156,8 +157,11 @@ export function Portfolio() {
       <header className="fixed inset-x-0 top-0 z-30 border-b-2 border-black bg-paper/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1440px] items-center gap-3 px-4 py-2.5 sm:px-7 lg:px-10">
           <a href="#home" className="mono flex shrink-0 items-center gap-2 text-xs font-bold" aria-label="Mriganka Debnath, home"><Image src="/profile-cutout.png" alt="" width={112} height={112} className="h-7 w-7 border-2 border-black object-cover" /><span className="hidden sm:inline">mriganka.dev</span></a>
-          <nav aria-label="Main navigation" className="flex min-w-0 flex-1 items-center justify-start gap-1 overflow-x-auto sm:justify-end">
-            {navItems.map((item) => <a key={item.href} href={item.href} className="mono shrink-0 px-2 py-1.5 text-[10px] font-semibold hover:bg-yellow-200 sm:px-3 sm:text-xs">{item.label}</a>)}
+          <button type="button" className="ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center border-2 border-black bg-white sm:hidden" aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isMenuOpen} aria-controls="primary-navigation" onClick={() => setIsMenuOpen((open) => !open)}>
+            {isMenuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+          </button>
+          <nav id="primary-navigation" aria-label="Main navigation" className={`${isMenuOpen ? "flex" : "hidden"} absolute inset-x-0 top-full flex-col border-b-2 border-black bg-paper px-4 py-2 shadow-[0_4px_0_rgba(23,23,23,0.12)] sm:static sm:flex sm:flex-1 sm:flex-row sm:items-center sm:justify-end sm:gap-1 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none`}>
+            {navItems.map((item) => <a key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)} className="mono flex min-h-11 items-center px-3 text-xs font-semibold hover:bg-yellow-200 sm:min-h-0 sm:shrink-0 sm:px-3 sm:py-1.5">{item.label}</a>)}
           </nav>
         </div>
       </header>
