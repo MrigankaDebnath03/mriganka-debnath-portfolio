@@ -268,7 +268,6 @@ export function Portfolio() {
             <article className="neo-box flex flex-col overflow-hidden">
               <WindowBar path={`~/education/${item.institution.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}.record`} right={<span className="mono text-[9px]">{item.dates}</span>} />
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <p className="mono text-[9px] font-bold text-indigo-700">PREVIOUS EDUCATION</p>
                 <h3 className="mt-3 text-lg font-bold leading-tight">{item.institution}</h3>
                 {item.program && <p className="mt-3 text-sm leading-5 text-neutral-700">{item.program}</p>}
                 <div className="mt-auto border-t border-black/20 pt-5"><span className="inline-flex border-2 border-black bg-yellow-300 px-3 py-2 mono text-xs font-bold">GRADE {item.grade}</span></div>
