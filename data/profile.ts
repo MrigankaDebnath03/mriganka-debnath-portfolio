@@ -25,7 +25,6 @@ export const profile = {
       },
       {
         institution: "Sarada Vidya Mandir, Raiganj",
-        program: "Primary Schooling",
         dates: "May 2007 – September 2019",
         grade: "93%",
       },

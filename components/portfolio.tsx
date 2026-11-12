@@ -261,7 +261,6 @@ export function Portfolio() {
                 <p className="mt-2 text-sm leading-5 text-neutral-700">{profile.education.degree}</p>
                 <span className="mt-4 self-start border-2 border-black bg-yellow-300 px-3 py-2 mono text-xs font-bold">CGPA {profile.education.cgpa}</span>
                 <div className="mt-5 border-t border-black/20 pt-4"><p className="mono text-[9px] font-bold text-neutral-500">CORE COURSEWORK</p><div className="mt-3 flex flex-wrap gap-2">{profile.education.coursework.map((course) => <span key={course} className="bg-neutral-100 px-2.5 py-1.5 text-xs">{course}</span>)}</div></div>
-                <div className="mt-5 border-t border-black/20 pt-4"><p className="mono text-[9px] font-bold text-neutral-500">LANGUAGES</p><p className="mt-2 text-sm">English · Hindi · Bengali</p></div>
               </div>
             </article>
             </TimelineEntry>
@@ -271,8 +270,8 @@ export function Portfolio() {
               <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <p className="mono text-[9px] font-bold text-indigo-700">PREVIOUS EDUCATION</p>
                 <h3 className="mt-3 text-lg font-bold leading-tight">{item.institution}</h3>
-                <p className="mt-3 text-sm leading-5 text-neutral-700">{item.program}</p>
-                <div className="mt-auto border-t border-black/20 pt-5"><p className="mono text-[9px] font-bold text-neutral-500">GRADE</p><p className="mt-2 text-2xl font-bold">{item.grade}</p></div>
+                {item.program && <p className="mt-3 text-sm leading-5 text-neutral-700">{item.program}</p>}
+                <div className="mt-auto border-t border-black/20 pt-5"><span className="inline-flex border-2 border-black bg-yellow-300 px-3 py-2 mono text-xs font-bold">GRADE {item.grade}</span></div>
               </div>
             </article></TimelineEntry>)}
             </div>
