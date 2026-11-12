@@ -19,7 +19,7 @@ export const profile = {
     priorEducation: [
       {
         institution: "Sri Chaitanya Techno School, Visakhapatnam",
-        program: "High School Diploma, Physics, Chemistry and Mathematics",
+        program: "High School (Senior Secondary) Degree in PCM",
         dates: "September 2019 – September 2021",
         grade: "95.6%",
       },
